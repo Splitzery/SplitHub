@@ -871,9 +871,10 @@ function Flux:Window(text, bottom,mainclr,toclose)
 					{TextTransparency = 0.3}
 				):Play()
 			end)
-
+pcall(callback, Toggled)
 			Toggle.MouseButton1Click:Connect(function()
 				if Toggled == false then
+
 					ToggleCircle:TweenPosition(UDim2.new(0.37, 0,-0.273, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Quart, .3, true)
 					TweenService:Create(
 						ToggleCircle,
