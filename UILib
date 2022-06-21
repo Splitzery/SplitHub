@@ -3,7 +3,7 @@
 -- This User Interface Library is brought to you by Solaris Software.
 local Solaris = Instance.new("ScreenGui")
 Solaris.Name = "SplitHub"
-Solaris.Parent = game.CoreGui
+Solaris.Parent = game.Players.LocalPlayer.PlayerGui
 Solaris.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 local NotificationHolder = Instance.new("ScreenGui")
