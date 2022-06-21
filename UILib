@@ -111,7 +111,7 @@ function Luxt1.CreateWindow(libName, logoId)
     --
 
     LuxtLib.Name = "LuxtLib"..libName
-    LuxtLib.Parent = game.CoreGui
+    LuxtLib.Parent = game.Players.LocalPlayer.PlayerGui
     LuxtLib.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
     MainFrame.Name = "MainFrame"
