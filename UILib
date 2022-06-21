@@ -872,6 +872,8 @@ function Flux:Window(text, bottom,mainclr,toclose)
 				):Play()
 			end)
 			Toggle.MouseButton1Click:Connect(function()
+				Toggle = not Toggle
+
 				if Toggled == false then
 
 					ToggleCircle:TweenPosition(UDim2.new(0.37, 0,-0.273, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Quart, .3, true)
@@ -888,7 +890,6 @@ function Flux:Window(text, bottom,mainclr,toclose)
 						{BackgroundColor3 = Color3.fromRGB(255,255,255)}
 					):Play()
 				end
-				Toggled = not Toggled
 				pcall(callback, Toggled)
 			end)
 			
