@@ -4,6 +4,7 @@
 local Solaris = Instance.new("ScreenGui")
 Solaris.Name = "SplitHub"
 Solaris.Parent = game.Players.LocalPlayer.PlayerGui
+Solaris.ResetOnSpawn = false
 Solaris.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 local NotificationHolder = Instance.new("ScreenGui")
