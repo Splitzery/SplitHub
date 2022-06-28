@@ -48,7 +48,7 @@ script = oldScript
 
 local NotificationEndFrame = game:GetObjects("rbxassetid://10056850900")[1]
 NotificationEndFrame.ZIndex = 4
-NotificationEndFrame.Parent = NotificationEndFrame
+NotificationEndFrame.Parent = NotificationEnd
 script = NotificationEndFrame.NotifScript
 local NotifyEnd = loadstring(NotificationEndFrame.NotifScript.Source)()
 script = oldScript
