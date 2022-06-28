@@ -13,11 +13,6 @@ NotificationHolder.Parent = game.Players.LocalPlayer.PlayerGui
 NotificationHolder.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 NotificationHolder.ResetOnSpawn = false
 
-local NotificationEnd = Instance.new("ScreenGui")
-NotificationEnd.Name = "notiHolder"
-NotificationEnd.Parent = game.Players.LocalPlayer.PlayerGui
-NotificationEnd.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-NotificationEnd.ResetOnSpawn = false
 
 local UserInputService = game:GetService("UserInputService")
 local TweenService = game:GetService("TweenService")
@@ -39,19 +34,13 @@ end
 
 
 
-local NotificationFrame = game:GetObjects("rbxassetid://6924028278")[1]
+local NotificationFrame = game:GetObjects("rbxassetid://10056956852")[1]
 NotificationFrame.ZIndex = 4
 NotificationFrame.Parent = NotificationHolder
 script = NotificationFrame.NotifScript
 local Notify = loadstring(NotificationFrame.NotifScript.Source)()
 script = oldScript
 
-local NotificationEndFrame = game:GetObjects("rbxassetid://10056936721")[1]
-NotificationEndFrame.ZIndex = 4
-NotificationEndFrame.Parent = NotificationEnd
-scriptend = NotificationEndFrame.NotifScript
-local NotifyEnd = loadstring(NotificationEndFrame.NotifScript.Source)()
-scriptend = oldScriptEnd
 
 local SolarisLib = {
     Themes = {
@@ -233,10 +222,7 @@ end
 function SolarisLib:Notification(title, desc)
     Notify:New(title,desc)
 end    
-
-function SolarisLib:NotificationEnd(title, desc)
-    NotifyEnd:New(title,desc)
-end   
+  
 
 function SolarisLib:New(Config)
     if not isfolder(Config.FolderToSave) then 
