@@ -221,8 +221,7 @@ end
 
 function SolarisLib:Notification(title, desc)
     Notify:New(title,desc)
-end    
-  
+end
 
 function SolarisLib:New(Config)
     if not isfolder(Config.FolderToSave) then 
