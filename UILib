@@ -1,5 +1,5 @@
 local Solaris = Instance.new("ScreenGui")
-Solaris.Name = "dosage's solaris gui"
+Solaris.Name = "SplitHub"
 Solaris.Parent = game.Players.LocalPlayer.PlayerGui
 Solaris.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 Solaris.ResetOnSpawn = false
