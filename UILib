@@ -1,18 +1,14 @@
---https://raw.githubusercontent.com/Stebulous/solaris-ui-lib/main/source.lua
-
--- This User Interface Library is brought to you by Solaris Software.
 local Solaris = Instance.new("ScreenGui")
-Solaris.Name = "SplitHub"
+Solaris.Name = "dosage's solaris gui"
 Solaris.Parent = game.Players.LocalPlayer.PlayerGui
-Solaris.ResetOnSpawn = false
 Solaris.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+Solaris.ResetOnSpawn = false
 
 local NotificationHolder = Instance.new("ScreenGui")
 NotificationHolder.Name = "notiHolder"
 NotificationHolder.Parent = game.Players.LocalPlayer.PlayerGui
 NotificationHolder.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 NotificationHolder.ResetOnSpawn = false
-
 
 local UserInputService = game:GetService("UserInputService")
 local TweenService = game:GetService("TweenService")
@@ -40,7 +36,6 @@ NotificationFrame.Parent = NotificationHolder
 script = NotificationFrame.NotifScript
 local Notify = loadstring(NotificationFrame.NotifScript.Source)()
 script = oldScript
-
 
 local SolarisLib = {
     Themes = {
@@ -168,6 +163,7 @@ local SolarisLib = {
 
 
 local MainUI = game:GetObjects("rbxassetid://7835727566")[1]
+
 local function MakeDraggable(topbarobject, object) 
     pcall(function()
 		local dragging, dragInput, mousePos, framePos = false
@@ -221,7 +217,7 @@ end
 
 function SolarisLib:Notification(title, desc)
     Notify:New(title,desc)
-end
+end    
 
 function SolarisLib:New(Config)
     if not isfolder(Config.FolderToSave) then 
@@ -619,7 +615,7 @@ function SolarisLib:New(Config)
         end   
         
         local general = Settings:Tab("General")
-        general:ToggleSetting("Show Music On Launch", "Shows the music menu when you load SplitHub", true, "ShowMusicOnLaunch")
+        general:ToggleSetting("Show Music On Launch", "Shows the music menu when you load Snow Hub", true, "ShowMusicOnLaunch")
         general:BindSetting("Close Bind", "Hides/Shows the main window when pressed.", Enum.KeyCode.RightControl, "CloseBind")
         
         local appearance = Settings:Tab("Appearance")
