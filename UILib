@@ -1,12 +1,12 @@
 local Solaris = Instance.new("ScreenGui")
 Solaris.Name = "SplitHub"
-Solaris.Parent = game.Players.LocalPlayer.PlayerGui
+Solaris.Parent = gethui()
 Solaris.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 Solaris.ResetOnSpawn = false
 
 local NotificationHolder = Instance.new("ScreenGui")
 NotificationHolder.Name = "notiHolder"
-NotificationHolder.Parent = game.Players.LocalPlayer.PlayerGui
+NotificationHolder.Parent = gethui()
 NotificationHolder.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 NotificationHolder.ResetOnSpawn = false
 
