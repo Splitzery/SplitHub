@@ -1,14 +1,16 @@
 local Solaris = Instance.new("ScreenGui")
 Solaris.Name = "SplitHub"
-Solaris.Parent = gethui()
+Solaris.Parent = game.Players.LocalPlayer.PlayerGui
 Solaris.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 Solaris.ResetOnSpawn = false
+Solaris.DisplayOrder = 99999
 
 local NotificationHolder = Instance.new("ScreenGui")
 NotificationHolder.Name = "notiHolder"
-NotificationHolder.Parent = gethui()
+NotificationHolder.Parent = game.Players.LocalPlayer.PlayerGui
 NotificationHolder.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 NotificationHolder.ResetOnSpawn = false
+NotificationHolder.DisplayOrder = 9999
 
 local UserInputService = game:GetService("UserInputService")
 local TweenService = game:GetService("TweenService")
