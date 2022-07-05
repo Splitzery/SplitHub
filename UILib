@@ -637,7 +637,7 @@ function SolarisLib:New(Config)
 
 
         local general = Settings:Tab("General")
-        local label = general:Label("Exploit: ".. getexploit)
+        local label = general:Label("Exploit: ".. getexploit())
         general:ToggleSetting("Show Music On Launch", "Shows the music menu when you load Snow Hub", true, "ShowMusicOnLaunch")
         general:BindSetting("Close Bind", "Hides/Shows the main window when pressed.", Enum.KeyCode.RightControl, "CloseBind")
         
