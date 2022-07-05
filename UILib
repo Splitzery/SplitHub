@@ -614,39 +614,36 @@ function SolarisLib:New(Config)
                 AddOptions(list)
             end
             return TabHold
-        end     
+        end   
+        
+        local function getexploit()
+            local exploit =
+                (syn and not is_sirhurt_closure and not pebc_execute and "Synapse") or
+                (is_sirhurt_closure and "Sirhurt") or
+                (pebc_execute and "ProtoSmasher") or
+                (KRNL_LOADED and "Krnl") or
+                (WrapGlobal and "WeAreDevs") or
+                (isvm and "Proxo") or
+                (shadow_env and "Shadow") or
+                (jit and "EasyExploits") or
+                (getscriptenvs and "Calamari") or
+                (unit and not syn and "Unit") or
+                (OXYGEN_LOADED and "Oxygen U") or
+                (IsElectron and "Electron") or
+                ("Unsupported")
+          
+            return exploit
+          end
+
+        local general = Settings:Tab("General")
+        general:Dropdown("Exploit: " .. getexploit(), "", {}, "", "")
+        general:ToggleSetting("Show Music On Launch", "Shows the music menu when you load SplitHub", true, "ShowMusicOnLaunch")
+        general:BindSetting("Close Bind", "Hides/Shows the main window when pressed.", Enum.KeyCode.RightControl, "CloseBind")
+        
+        local appearance = Settings:Tab("Appearance")
+        appearance:Dropdown("Theme", "The look of the user interface", {"Default", "Discord", "Red", "Green", "Blue"}, "Default", "Theme")
 
     end 
-
-
-    local function getexploit()
-        local exploit =
-            (syn and not is_sirhurt_closure and not pebc_execute and "Synapse") or
-            (is_sirhurt_closure and "Sirhurt") or
-            (pebc_execute and "ProtoSmasher") or
-            (KRNL_LOADED and "Krnl") or
-            (WrapGlobal and "WeAreDevs") or
-            (isvm and "Proxo") or
-            (shadow_env and "Shadow") or
-            (jit and "EasyExploits") or
-            (getscriptenvs and "Calamari") or
-            (unit and not syn and "Unit") or
-            (OXYGEN_LOADED and "Oxygen U") or
-            (IsElectron and "Electron") or
-            ("Unsupported")
-      
-        return exploit
-      end
-
-
-    local general = Settings:Tab("General")
-    general:ToggleSetting("Show Music On Launch", "Shows the music menu when you load Snow Hub", true, "ShowMusicOnLaunch")
-    general:BindSetting("Close Bind", "Hides/Shows the main window when pressed.", Enum.KeyCode.RightControl, "CloseBind")
-    
-    local appearance = Settings:Tab("Appearance")
-    appearance:Dropdown("Theme", "The look of the user interface", {"Default", "Discord", "Red", "Green", "Blue"}, "Default", "Theme")
-
-
     MusicConstructor()
     SettingsConstructor()
 
@@ -1178,19 +1175,17 @@ function SolarisLib:New(Config)
 
                 return ColorPicker
             end
-
-
             function ItemHold:Label(text)
                 local Label, LabelFrame = {}, game:GetObjects("rbxassetid://7032552322")[1]
                 LabelFrame.Parent = Section
                 LabelFrame.Title.Text = text
                 LabelFrame.Name = text .. "element"
-    
+
                 function Label:Set(tochange)
                     LabelFrame.Title.Text = tochange
                     LabelFrame.Name = text .. "element"
                 end    
-    
+
                 
                 spawn(function()
                     while wait() do
@@ -1198,13 +1193,9 @@ function SolarisLib:New(Config)
                        LabelFrame.Title.TextColor3 = SolarisLib.Themes[SolarisLib.Settings.Theme].TextColor
                     end
                 end)
-    
+
                 return Label
             end
-
-            local label = general:Label("Exploit: ".. getexploit())
-
-          
             function ItemHold:Textbox(text,disappear,callback)
                 local Textbox, TextboxFrame = {}, game:GetObjects("rbxassetid://7147292392")[1]
                 TextboxFrame.Parent = Section
