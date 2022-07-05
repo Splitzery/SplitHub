@@ -584,6 +584,17 @@ function SolarisLib:New(Config)
                     end
                 end)
 
+                function TabHold:SettingsLabel(title, desc, list, def, path)
+                    local opened = false
+                    local value = SolarisLib.Settings[path] or def
+                    local Dropdown = DropdownPreset:Clone()
+                    Dropdown.Parent = Container
+                    Dropdown.Title.Text = title
+                    Dropdown.Desc.Text = desc
+                    Dropdown.Main.Current.Text = value
+    
+                    end
+
                 local function AddOptions(opts)
                     for _,option in pairs(opts) do
                         local Option = OptionPreset:Clone()
@@ -636,7 +647,7 @@ function SolarisLib:New(Config)
           end
 
         local general = Settings:Tab("General")
-        general:Dropdown("Exploit: " .. getexploit(), "", {""}, "", "")
+        general:SettingsLabel("Exploit: " .. getexploit(), "", {""}, "", "")
         general:ToggleSetting("Show Music On Launch", "Shows the music menu when you load SplitHub", true, "ShowMusicOnLaunch")
         general:BindSetting("Close Bind", "Hides/Shows the main window when pressed.", Enum.KeyCode.RightControl, "CloseBind")
         
