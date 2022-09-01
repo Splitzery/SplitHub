@@ -1,5 +1,12 @@
 local Solaris = Instance.new("ScreenGui")
 Solaris.Name = "SplitHub"
+
+if syn then
+syn.protect_gui(Solaris)
+else
+print("get synapse")
+end
+
 Solaris.Parent = game.Players.LocalPlayer.PlayerGui
 Solaris.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 Solaris.ResetOnSpawn = false
@@ -7,19 +14,18 @@ Solaris.DisplayOrder = 99999
 
 local NotificationHolder = Instance.new("ScreenGui")
 NotificationHolder.Name = "notiHolder"
+
+if syn then
+syn.protect_gui(NotificationHolder)
+else
+print("get synapse")
+end
+
 NotificationHolder.Parent = game.Players.LocalPlayer.PlayerGui
 NotificationHolder.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 NotificationHolder.ResetOnSpawn = false
 NotificationHolder.DisplayOrder = 9999
 
-if syn then
-syn.protect_gui(Solaris)
-syn.protect_gui(NotificationHolder)
-NotificationHolder.Parent = game:GetService("PlayerGui")
-Solaris.Parent = game:GetService("PlayerGui")
-else
-print("get synapse")
-end
 
 local UserInputService = game:GetService("UserInputService")
 local TweenService = game:GetService("TweenService")
