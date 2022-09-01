@@ -1,8 +1,9 @@
 local Solaris = Instance.new("ScreenGui")
 Solaris.Name = "SplitHub"
+local GUI = game:GetObjects("SplitHub")[1]
 
 if syn then
-syn.protect_gui(Solaris)
+syn.protect_gui(GUI)
 else
 print("get synapse")
 end
@@ -14,9 +15,10 @@ Solaris.DisplayOrder = 99999
 
 local NotificationHolder = Instance.new("ScreenGui")
 NotificationHolder.Name = "notiHolder"
+local GUI = game:GetObjects("notiHolder")[1]
 
 if syn then
-syn.protect_gui(NotificationHolder)
+syn.protect_gui(GUI)
 else
 print("get synapse")
 end
