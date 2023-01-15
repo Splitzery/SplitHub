@@ -4,6 +4,7 @@ Solaris.Parent = game.Players.LocalPlayer.PlayerGui
 Solaris.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 Solaris.ResetOnSpawn = false
 Solaris.DisplayOrder = 99999
+syn.protect_gui(Solaris)
 
 local NotificationHolder = Instance.new("ScreenGui")
 NotificationHolder.Name = "notiHolder"
@@ -11,6 +12,7 @@ NotificationHolder.Parent = game.Players.LocalPlayer.PlayerGui
 NotificationHolder.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 NotificationHolder.ResetOnSpawn = false
 NotificationHolder.DisplayOrder = 9999
+syn.protect_gui(NotificationHolder)
 
 
 local UserInputService = game:GetService("UserInputService")
