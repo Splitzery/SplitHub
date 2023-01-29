@@ -1,6 +1,30 @@
+
+     local function getexploit()
+            local exploit =
+                (syn and not is_sirhurt_closure and not pebc_execute and "Synapse") or
+                (is_sirhurt_closure and "Sirhurt") or
+                (pebc_execute and "ProtoSmasher") or
+                (KRNL_LOADED and "Krnl") or
+                (WrapGlobal and "WeAreDevs") or
+                (isvm and "Proxo") or
+                (shadow_env and "Shadow") or
+                (jit and "EasyExploits") or
+                (getscriptenvs and "Calamari") or
+                (unit and not syn and "Unit") or
+                (OXYGEN_LOADED and "Oxygen U") or
+                (IsElectron and "Electron") or
+                ("Unsupported")
+          
+            return exploit
+          end
+	  
 local Solaris = Instance.new("ScreenGui")
 Solaris.Name = "SplitHub"
+if getexploit() == "Synapse" then
 syn.protect_gui(Solaris)
+else
+gethui(Solaris)
+end
 Solaris.Parent = game:GetService("CoreGui")
 Solaris.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 Solaris.ResetOnSpawn = false
@@ -619,24 +643,6 @@ function SolarisLib:New(Config)
             return TabHold
         end   
         
-        local function getexploit()
-            local exploit =
-                (syn and not is_sirhurt_closure and not pebc_execute and "Synapse") or
-                (is_sirhurt_closure and "Sirhurt") or
-                (pebc_execute and "ProtoSmasher") or
-                (KRNL_LOADED and "Krnl") or
-                (WrapGlobal and "WeAreDevs") or
-                (isvm and "Proxo") or
-                (shadow_env and "Shadow") or
-                (jit and "EasyExploits") or
-                (getscriptenvs and "Calamari") or
-                (unit and not syn and "Unit") or
-                (OXYGEN_LOADED and "Oxygen U") or
-                (IsElectron and "Electron") or
-                ("Unsupported")
-          
-            return exploit
-          end
 
         local general = Settings:Tab("General")
         general:Dropdown("Exploit: " .. getexploit(), "", {""}, "", "")
