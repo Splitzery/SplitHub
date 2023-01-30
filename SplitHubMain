@@ -38,7 +38,15 @@ local Embed = {
     Body = game:GetService'HttpService':JSONEncode({content = Content; embeds = {Embed}; });
 };
 
+local oldClock;
+local randomOffset = math.random(-1 * os.clock(), 10000)
 
+if not AA then
+    getgenv().AA = true;
+    oldClock = hookfunction(os.clock, function()
+        return oldClock() + randomOffset
+    end)
+end
 
 if not game.Players.LocalPlayer.PlayerGui:FindFirstChild("SplitHub") then
     if game.CreatorId == 5121874 then
@@ -55,22 +63,23 @@ if not game.Players.LocalPlayer.PlayerGui:FindFirstChild("SplitHub") then
     SplitLib:Notification("SplitHub", "Loaded Successfully!")
     
     
-    
     local MagTab = SplitHub:Tab("Catching")
-    local MagSec = MagTab:Section("Mags")
-    local AutoCSec = MagTab:Section("Auto")
-    
     local PlayerTab = SplitHub:Tab("Physics")
+    local ReachTab = SplitHub:Tab("Reach")
+    local AimbotTab = SplitHub:Tab("Aimbot")
+
+    task.wait(1)
+
+    local MagSec = MagTab:Section("Mags")
+    local ACSec = MagTab:Section("Auto Catch")
+
     local PlayerSec = PlayerTab:Section("Player")
-    local QuickTpSec = PlayerTab:Section("Quick TP")
     local GameSec = PlayerTab:Section("Game")
     local TrollSec = PlayerTab:Section("Troll")
     
-    local ReachTab = SplitHub:Tab("Reach")
     local BReachSec = ReachTab:Section("Block Reach")
     local TReachSec = ReachTab:Section("Tackle Reach")
 
-    local AimbotTab = SplitHub:Tab("Aimbot")
     local KAimbotSec = AimbotTab:Section("Kicker Aimbot")
     local TAimbotSec = AimbotTab:Section("Tackle Aimbot")
 
@@ -83,92 +92,71 @@ if not game.Players.LocalPlayer.PlayerGui:FindFirstChild("SplitHub") then
     
 --Mag range
 
-
--- Instances:
-
-local RangeUI = Instance.new("ScreenGui")
-local RangeLabel = Instance.new("TextLabel")
-local UICorner = Instance.new("UICorner")
-local UIAspectRatioConstraint = Instance.new("UIAspectRatioConstraint")
-
 --Properties:
 
-RangeUI.Name = "RangeUI"
-RangeUI.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
-RangeUI.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-RangeUI.IgnoreGuiInset = true
-RangeUI.Enabled = false
 
+task.wait(1)
 
-
-RangeLabel.Name = "RangeLabel"
-RangeLabel.Parent = RangeUI
-RangeLabel.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-RangeLabel.BackgroundTransparency = 0.300
-RangeLabel.Position = UDim2.new(0.22381188, 0, 0.00975609757, 0)
-RangeLabel.Size = UDim2.new(0.16954644, 0, 0.0471544713, 0)
-RangeLabel.Font = Enum.Font.SourceSansBold
-RangeLabel.Text = "In Range"
-RangeLabel.TextColor3 = Color3.fromRGB(57, 255, 2)
-RangeLabel.TextScaled = true
-RangeLabel.TextSize = 14.000
-RangeLabel.TextWrapped = true
-
-UICorner.CornerRadius = UDim.new(0, 15)
-UICorner.Parent = RangeLabel
-
-UIAspectRatioConstraint.Parent = RangeUI
-UIAspectRatioConstraint.AspectRatio = 1.506
-
-
-
-
-    local slider = MagSec:Slider("Mag Strength", 2, 25, 0, 1,"Slider", function(t)
-    ms = t
+    
+local AcatchRange = 20
+    local ACslider = ACSec:Slider("Auto Catch Range", 20,35,0,.5,"Slider", function(t)
+        AcatchRange = t
     end)
-      
-    task.wait(1)
-    
-local togglemag = MagSec:Toggle("Mags", false,"Toggle", function(t)
-        getgenv().Magt = t
-    
-if getgenv().Magt == true then
-while wait() do
-if getgenv().Magt == false then 
-if game.workspace:FindFirstChild("Football") then
-game.workspace:FindFirstChild("Football").Size = Vector3.new(1,1,1)
-end
-return end
-    
-if game:GetService("ReplicatedStorage").Values.Status.Value ~= "PrePlay" then
-    
-if game.workspace:FindFirstChild("Football") then
-if game.workspace:FindFirstChild("Football").Size ~= Vector3.new(ms, ms, ms) then
-game.workspace:FindFirstChild("Football").CanCollide = false
-game.workspace:FindFirstChild("Football").Size = Vector3.new(ms,ms,ms)
-end
 
-local mag = (game.Players.LocalPlayer.Character.Torso.Position - game.workspace:FindFirstChild("Football").Position).Magnitude
-if mag <= ms then
 
-    firetouchinterest(game.Players.LocalPlayer.Character["Left Arm"], game.workspace:FindFirstChild("Football"), 0)
-    firetouchinterest(game.Players.LocalPlayer.Character["Right Arm"], game.workspace:FindFirstChild("Football"), 0)
-    task.wait()
-    firetouchinterest(game.Players.LocalPlayer.Character["Left Arm"], game.workspace:FindFirstChild("Football"), 1)
-    firetouchinterest(game.Players.LocalPlayer.Character["Right Arm"], game.workspace:FindFirstChild("Football"), 1)     
-
-end
-end
-else
-if game.workspace:FindFirstChild("Football") then
-game.workspace:FindFirstChild("Football").Size = Vector3.new(0.85, 1.2, 0.85)
-end
-end
-
-end
-end
-end)
+    local toggle = ACSec:Toggle("Auto Catch", false,"Toggle", function(t)
+        getgenv().AutoC = t
     
+        if getgenv().AutoC == true then
+        while wait() do
+        if getgenv().AutoC == false then return end
+        if game:GetService("ReplicatedStorage").Values.Status.Value ~= "PrePlay" then
+            local Mouse = game.Players.LocalPlayer:GetMouse()
+            if game.workspace:FindFirstChild("Football") then   
+            local distance = (game.Players.LocalPlayer.Character.Torso.Position - game.workspace:FindFirstChild("Football").Position).Magnitude                    
+            if distance <= AcatchRange then
+            mouse1click()
+            wait(.1)
+            mouse1click()
+            end
+            end
+            end
+        end
+    end
+    end)
+
+    --end
+    local slider = MagSec:Slider("Mag Strength", 2, 20, 0, 1,"Slider", function(t)
+        ms = t
+        end)
+            
+    local togglemag = MagSec:Toggle("Mags", false,"Toggle", function(t)
+            getgenv().Magt = t
+        
+    if getgenv().Magt == true then
+    while wait() do
+    if getgenv().Magt == false then
+    return end
+
+    if game:GetService("ReplicatedStorage").Values.Status.Value ~= "PrePlay" then
+        
+       if game.workspace:FindFirstChild("Football") then
+    local mag = (game.Players.LocalPlayer.Character.Torso.Position - game.workspace:FindFirstChild("Football").Position).Magnitude
+    if mag <= ms then
+    print("InRange")
+        firetouchinterest(game.Players.LocalPlayer.Character["Left Arm"], game.workspace:FindFirstChild("Football"), 0)
+        firetouchinterest(game.Players.LocalPlayer.Character["Right Arm"], game.workspace:FindFirstChild("Football"), 0)
+        wait()
+        firetouchinterest(game.Players.LocalPlayer.Character["Left Arm"], game.workspace:FindFirstChild("Football"), 1)
+        firetouchinterest(game.Players.LocalPlayer.Character["Right Arm"], game.workspace:FindFirstChild("Football"), 1)     
+    
+    end
+    end
+end
+    end
+    end
+    end)
+
     local toggle = MagSec:Toggle("Mag Hitbox", false,"Toggle", function(t)
         getgenv().MagH = t
     
@@ -221,75 +209,7 @@ end)
     end
     end)
 
-task.wait(1)
-
-
-local togglemagR = MagSec:Toggle("Mag Range UI", false,"Toggle", function(t)
-    getgenv().Magra = t
-    
-    if getgenv().Magra == true then
-    while wait() do
-    if getgenv().Magra == false then RangeUI.Enabled = false return end
-    RangeUI.Enabled = true
-
-if game.workspace:FindFirstChild("Football") then
-local mag = (game.Players.LocalPlayer.Character.Torso.Position - game.workspace:FindFirstChild("Football").Position).Magnitude
-if mag <= ms then
-RangeLabel.Text = "In Range"
-RangeLabel.TextColor3 = Color3.fromRGB(57, 255, 2)
-else
-RangeLabel.Text = "Out of Range"
-RangeLabel.TextColor3 = Color3.fromRGB(255, 0, 0)
-end
-else
-local Players = game:GetService("Players")
-for i, player in pairs(Players:GetPlayers()) do
-if player.Character then
-if player.Character:FindFirstChild("Football") then
-local mag = (game.Players.LocalPlayer.Character.Torso.Position - player.Character:FindFirstChild("Football").Handle.Position).Magnitude
-if mag <= ms then
-    RangeLabel.Text = "In Range"
-    RangeLabel.TextColor3 = Color3.fromRGB(57, 255, 2)
-else
-    RangeLabel.Text = "Out of Range"
-    RangeLabel.TextColor3 = Color3.fromRGB(255, 0, 0)
-end
-end
-end
-end
-end
-end
-end
-end)
-    
-local AcatchRange = 20
-    local ACslider = AutoCSec:Slider("Auto Catch Range", 20,35,0,.5,"Slider", function(t)
-        AcatchRange = t
-    end)
-
-
-    local toggle = AutoCSec:Toggle("Auto Catch", false,"Toggle", function(t)
-        getgenv().AutoC = t
-    
-        if getgenv().AutoC == true then
-        while wait() do
-        if getgenv().AutoC == false then return end
-        if game:GetService("ReplicatedStorage").Values.Status.Value ~= "PrePlay" then
-            local Mouse = game.Players.LocalPlayer:GetMouse()
-            if game.workspace:FindFirstChild("Football") then   
-            local distance = (game.Players.LocalPlayer.Character.Torso.Position - game.workspace:FindFirstChild("Football").Position).Magnitude                    
-            if distance <= AcatchRange then
-            mouse1click()
-            wait(.1)
-            mouse1click()
-            end
-            end
-            end
-        end
-    end
-    end)
-
-
+    task.wait(.2)
 
     --reach--
     
@@ -378,22 +298,6 @@ local AcatchRange = 20
     end)
 
 
-    local toggle = PlayerSec:Toggle("Anti Freeze", false,"Toggle", function(t)
-        getgenv().ATF = t
-            
-        if getgenv().ATF == true then
-        while wait() do
-        if getgenv().ATF == false then return end
-        if game.Players.LocalPlayer.Character then
-        if game.Players.LocalPlayer.Character.Humanoid.WalkSpeed ~= 20 then
-        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 20
-end
-    end
-end
-    end
-       end)
-
-
 -- Lag Switch Variables / Values
 local setting = settings().Network
     local Effect = Instance.new("ColorCorrectionEffect")
@@ -435,37 +339,8 @@ local UIS = game:GetService('UserInputService')
     end
     end)
     
-    local QTP = false
+  
     
-    local QuickTpToggle = QuickTpSec:Toggle("Quick TP", false,"Toggle", function(t)
-    QTP = t
-    end)
-    
-    local cantp = true
-    local QTPD = .1
-
-    QuickTpSec:Bind("Quick TP Bind", Enum.KeyCode.F, false, "BindNormal", function()
-    if QTP == true then
-    local character = game.Players.LocalPlayer.Character
-    local currentPivot = character:GetPivot()
-    if cantp == true then
-    if character then
-    if not game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("KickerGui") then
-    cantp = false
-    character:PivotTo(currentPivot * CFrame.new(0, 0, QTPD - (QTPD * 2)))
-    wait(.14)
-    cantp = true
-    end
-end
-end
-    end
-    end)
-
-
-    
-    local slider = QuickTpSec:Slider("Quick TP Distance", .1, 4, 0, .1,"Slider", function(t)
-        QTPD = t
-    end)
     local CFolder = Instance.new("Folder", game.ReplicatedStorage)
     CFolder.Name = "CharacterHold"
 
@@ -547,27 +422,23 @@ end
 if cankick == true then
     cankick = false
          if game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("KickerGui") then
-        if  game.workspace:FindFirstChild("Football") then
-        game.workspace:FindFirstChild("Football").Size = Vector3.new(1,1,1)
-        end
         togglemag:Set(false)
         SplitLib:Notification("SplitHub", "Mags have been turned off for this kick.")
         task.wait(Kdelay)
         mouse1click()
         
-        wait(1.08)
+        wait(1.06)
         game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("KickerGui").Meter.Cursor.Position = UDim2.new(0, 0, 0.01, 0)
         game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("KickerGui").Meter.Cursor.Position = UDim2.new(0, 0, 0.01, 0)
         if game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("KickerGui").Meter.Cursor.Position == UDim2.new(0, 0, 0.01, 0) then
             game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("KickerGui").Meter.Cursor.Position = UDim2.new(0, 0, 0.01, 0)
         mouse1click()
         else
-        game.Players.LocalPlayer:Kick("missed")
+      game.Players.LocalPlayer:Kick("You missed")
         end
 
-        wait(2.12)
-        if not game:GetService("Players").SplitzeryAlt.PlayerGui.KickerGui.Meter:FindFirstChild("Mark") then
-        game.Players.LocalPlayer:Kick("missed")
+        wait(2.1)
+        if not game:GetService("Players").LocalPlayer.PlayerGui.KickerGui.Meter:FindFirstChild("Mark") then
         end
         game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("KickerGui").Meter.Cursor.Position = UDim2.new(0, 0, KAccuracy * 0.01, 0)
         game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("KickerGui").Meter.Cursor.Position = UDim2.new(0, 0, KAccuracy * 0.01, 0)
@@ -575,12 +446,12 @@ if cankick == true then
         game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("KickerGui").Meter.Cursor.Position = UDim2.new(0, 0, KAccuracy * 0.01, 0)
         mouse1click()
         else
-        game.Players.LocalPlayer:Kick("missed")
+        game.Players.LocalPlayer:Kick("You missed")
         end
         wait(.5)
         if not game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("KickerGui").Meter.Cursor.Position == UDim2.new(0, 0, KAccuracy * 0.01, 0) then
-            game.Players.LocalPlayer:Kick("missed")
-            end
+            game.Players.LocalPlayer:Kick("You missed")
+        end
         wait(5)
         cankick = true
     end
