@@ -20,7 +20,7 @@
 	  
 local Solaris = Instance.new("ScreenGui")
 Solaris.Name = "SplitHub"
-if syn then
+if getexploit() == "Synapse" then
 syn.protect_gui(Solaris)
 else
 Solaris.Parent = gethui()
@@ -31,7 +31,7 @@ Solaris.DisplayOrder = 99999
 
 local NotificationHolder = Instance.new("ScreenGui")
 NotificationHolder.Name = "notiHolder"
-if syn then
+if getexploit() == "Synapse" then
 syn.protect_gui(NotificationHolder)
 else
 NotificationHolder.Parent = gethui()
