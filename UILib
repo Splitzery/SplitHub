@@ -23,17 +23,19 @@ Solaris.Name = "SplitHub"
 if getexploit() == "Synapse" then
 syn.protect_gui(Solaris)
 else
-gethui(Solaris)
+Solaris.Parent = gethui()
 end
-Solaris.Parent = game:GetService("CoreGui")
 Solaris.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 Solaris.ResetOnSpawn = false
 Solaris.DisplayOrder = 99999
 
 local NotificationHolder = Instance.new("ScreenGui")
 NotificationHolder.Name = "notiHolder"
+if getexploit() == "Synapse" then
 syn.protect_gui(NotificationHolder)
-NotificationHolder.Parent = game:GetService("CoreGui")
+else
+NotificationHolder.Parent = gethui()
+end
 NotificationHolder.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 NotificationHolder.ResetOnSpawn = false
 NotificationHolder.DisplayOrder = 9999
