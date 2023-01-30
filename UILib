@@ -22,6 +22,7 @@ local Solaris = Instance.new("ScreenGui")
 Solaris.Name = "SplitHub"
 if getexploit() == "Synapse" then
 syn.protect_gui(Solaris)
+Solaris.Parent = game:GetService("CoreGui")
 else
 Solaris.Parent = gethui()
 end
@@ -33,6 +34,7 @@ local NotificationHolder = Instance.new("ScreenGui")
 NotificationHolder.Name = "notiHolder"
 if getexploit() == "Synapse" then
 syn.protect_gui(NotificationHolder)
+NotificationHolder.Parent = game:GetService("CoreGui")
 else
 NotificationHolder.Parent = gethui()
 end
