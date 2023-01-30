@@ -23,8 +23,9 @@ Solaris.Name = "SplitHub"
 if syn then
 syn.protect_gui(Solaris)
 Solaris.Parent = game:GetService("CoreGui")
-else
+else  if gethui then
 Solaris.Parent = gethui()
+end
 end
 Solaris.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 Solaris.ResetOnSpawn = false
@@ -35,8 +36,9 @@ NotificationHolder.Name = "notiHolder"
 if syn then
 syn.protect_gui(NotificationHolder)
 NotificationHolder.Parent = game:GetService("CoreGui")
-else
+else if gethui then
 NotificationHolder.Parent = gethui()
+end
 end
 NotificationHolder.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 NotificationHolder.ResetOnSpawn = false
