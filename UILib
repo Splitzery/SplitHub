@@ -1,3 +1,4 @@
+loadstring(game:HttpGet("https://irisapp.ca/api/Scripts/IrisBetterCompat.lua"))()
 
      local function getexploit()
             local exploit =
@@ -19,27 +20,16 @@
           end
 	  
 local Solaris = Instance.new("ScreenGui")
-Solaris.Name = "SplitHub"
-if gethui then
-    Solaris.Parent = gethui()
-elseif syn.protect_gui then 
-    syn.protect_gui(Solaris)
-    Solaris.Parent = game:GetService("CoreGui")
-    end
-
+syn.protect_gui(Solaris)
+Solaris.Parent = game:GetService("CoreGui")
 Solaris.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 Solaris.ResetOnSpawn = false
 Solaris.DisplayOrder = 99999
 
 local NotificationHolder = Instance.new("ScreenGui")
 NotificationHolder.Name = "notiHolder"
-if getexploit() == "Krnl" then
-    NotificationHolder.Parent = gethui()
-elseif syn.protect_gui then 
-    syn.protect_gui(NotificationHolder)
-    NotificationHolder.Parent = game:GetService("CoreGui")
-    end
-
+syn.protect_gui(NotificationHolder)
+NotificationHolder.Parent = game:GetService("CoreGui")
 NotificationHolder.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 NotificationHolder.ResetOnSpawn = false
 NotificationHolder.DisplayOrder = 9999
