@@ -33,7 +33,7 @@ Solaris.DisplayOrder = 99999
 
 local NotificationHolder = Instance.new("ScreenGui")
 NotificationHolder.Name = "notiHolder"
-if gethui then
+if getexploit() == "Krnl" then
     NotificationHolder.Parent = gethui()
 elseif syn.protect_gui then 
     syn.protect_gui(NotificationHolder)
