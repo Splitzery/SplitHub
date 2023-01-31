@@ -24,7 +24,7 @@ if gethui then
     Solaris.Parent = gethui()
 elseif syn.protect_gui then 
     syn.protect_gui(Solaris)
-    Solaris.Parent = game.GetService("CoreGui")
+    Solaris.Parent = game:GetService("CoreGui")
     end
 
 Solaris.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
@@ -37,7 +37,7 @@ if gethui then
     NotificationHolder.Parent = gethui()
 elseif syn.protect_gui then 
     syn.protect_gui(NotificationHolder)
-    NotificationHolder.Parent = game.GetService("CoreGui")
+    NotificationHolder.Parent = game:GetService("CoreGui")
     end
 
 NotificationHolder.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
