@@ -20,16 +20,33 @@ loadstring(game:HttpGet("https://irisapp.ca/api/Scripts/IrisBetterCompat.lua"))(
           end
 	  
 local Solaris = Instance.new("ScreenGui")
+if get_hidden_gui or gethui then
+local hiddenUI = get_hidden_gui or gethui
+Solaris.Parent = hiddenUI()
+elseif (not is_sirhurt_closure) and (syn and syn.protect_gui) then
 syn.protect_gui(Solaris)
 Solaris.Parent = game:GetService("CoreGui")
+elseif game:GetService("CoreGui"):FindFirstChild('RobloxGui') then
+else
+game.Players.LocalPlayer:Kick("Trash Exploit")
+end
+
 Solaris.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 Solaris.ResetOnSpawn = false
 Solaris.DisplayOrder = 99999
 
 local NotificationHolder = Instance.new("ScreenGui")
 NotificationHolder.Name = "notiHolder"
+if get_hidden_gui or gethui then
+local hiddenUI = get_hidden_gui or gethui
+NotificationHolder.Parent = hiddenUI()
+elseif (not is_sirhurt_closure) and (syn and syn.protect_gui) then
 syn.protect_gui(NotificationHolder)
 NotificationHolder.Parent = game:GetService("CoreGui")
+elseif game:GetService("CoreGui"):FindFirstChild('RobloxGui') then
+else
+game.Players.LocalPlayer:Kick("Trash Exploit")
+end
 NotificationHolder.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 NotificationHolder.ResetOnSpawn = false
 NotificationHolder.DisplayOrder = 9999
