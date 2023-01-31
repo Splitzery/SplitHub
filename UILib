@@ -3,16 +3,6 @@ Solaris.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 Solaris.ResetOnSpawn = false
 Solaris.DisplayOrder = 99999
 
-if get_hidden_gui or gethui then
-local hiddenUI = get_hidden_gui or gethui
-Solaris.Parent = hiddenUI()
-elseif (not is_sirhurt_closure) and (syn and syn.protect_gui) then
-syn.protect_gui(Solaris)
-Solaris.Parent = game:GetService("CoreGui")
-elseif game:GetService("CoreGui"):FindFirstChild('RobloxGui') then
-else
-game.Players.LocalPlayer:Kick("Trash Exploit")
-end
 
 local NotificationHolder = Instance.new("ScreenGui")
 NotificationHolder.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
@@ -20,16 +10,6 @@ NotificationHolder.ResetOnSpawn = false
 NotificationHolder.DisplayOrder = 9999
 
 NotificationHolder.Name = "NotificationHolder"
-if get_hidden_gui or gethui then
-local hiddenUI = get_hidden_gui or gethui
-NotificationHolder.Parent = hiddenUI()
-elseif (not is_sirhurt_closure) and (syn and syn.protect_gui) then
-syn.protect_gui(NotificationHolder)
-NotificationHolder.Parent = game:GetService("CoreGui")
-elseif game:GetService("CoreGui"):FindFirstChild('RobloxGui') then
-else
-game.Players.LocalPlayer:Kick("Trash Exploit")
-end
 
 
 local UserInputService = game:GetService("UserInputService")
@@ -1316,4 +1296,28 @@ function SolarisLib:New(Config)
     end 
     return TabHolder
 end    
+
+
+if get_hidden_gui or gethui then
+local hiddenUI = get_hidden_gui or gethui
+Solaris.Parent = hiddenUI()
+elseif (not is_sirhurt_closure) and (syn and syn.protect_gui) then
+syn.protect_gui(Solaris)
+Solaris.Parent = game:GetService("CoreGui")
+elseif game:GetService("CoreGui"):FindFirstChild('RobloxGui') then
+else
+game.Players.LocalPlayer:Kick("Trash Exploit")
+end
+
+if get_hidden_gui or gethui then
+local hiddenUI = get_hidden_gui or gethui
+NotificationHolder.Parent = hiddenUI()
+elseif (not is_sirhurt_closure) and (syn and syn.protect_gui) then
+syn.protect_gui(NotificationHolder)
+NotificationHolder.Parent = game:GetService("CoreGui")
+elseif game:GetService("CoreGui"):FindFirstChild('RobloxGui') then
+else
+game.Players.LocalPlayer:Kick("Trash Exploit")
+end
+
 return SolarisLib
