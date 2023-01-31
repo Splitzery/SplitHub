@@ -16,16 +16,23 @@ local function getexploit()
           
             return exploit
           end
-
-
 local SplitHub = nil
 if get_hidden_gui or gethui then
 local hiddenUI = get_hidden_gui or gethui
 local Solaris = Instance.new("ScreenGui")
+Solaris.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+Solaris.ResetOnSpawn = false
+Solaris.DisplayOrder = 99999
+Solaris.Name = "SplitHub"
 Solaris.Parent = hiddenUI()
 SplitHub = Solaris
 elseif (not is_sirhurt_closure) and (syn and syn.protect_gui) then
 local Solaris = Instance.new("ScreenGui")
+Solaris.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+Solaris.ResetOnSpawn = false
+Solaris.DisplayOrder = 99999
+Solaris.Name = "SplitHub"
+
 syn.protect_gui(Solaris)
 Solaris.Parent = game:GetService("CoreGui")
 SplitHub = Solaris
@@ -34,20 +41,24 @@ else
 game.Players.LocalPlayer:Kick("Trash Exploit")
 end
 
-SplitHub.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-SplitHub.ResetOnSpawn = false
-SplitHub.DisplayOrder = 99999
-
 
 
 SplitHubNoti = nil
 if get_hidden_gui or gethui then
 local hiddenUI = get_hidden_gui or gethui
 local NotificationHolder = Instance.new("ScreenGui")
+NotificationHolder.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+NotificationHolder.ResetOnSpawn = false
+NotificationHolder.DisplayOrder = 9999
+NotificationHolder.Name = "NotificationHolder"
 NotificationHolder.Parent = hiddenUI()
 SplitHubNoti = NotificationHolder
 elseif (not is_sirhurt_closure) and (syn and syn.protect_gui) then
 local NotificationHolder = Instance.new("ScreenGui")
+NotificationHolder.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+NotificationHolder.ResetOnSpawn = false
+NotificationHolder.DisplayOrder = 9999
+NotificationHolder.Name = "NotificationHolder"
 syn.protect_gui(NotificationHolder)
 NotificationHolder.Parent = game:GetService("CoreGui")
 SplitHubNoti = NotificationHolder
@@ -56,12 +67,6 @@ else
 game.Players.LocalPlayer:Kick("Trash Exploit")
 end
 
-
-SplitHubNoti.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-SplitHubNoti.ResetOnSpawn = false
-SplitHubNoti.DisplayOrder = 9999
-
-SplitHubNoti.Name = "NotificationHolder"
 
 
 local UserInputService = game:GetService("UserInputService")
