@@ -1,15 +1,50 @@
+
+
+
+local SplitHub = nil
+if get_hidden_gui or gethui then
+local hiddenUI = get_hidden_gui or gethui
 local Solaris = Instance.new("ScreenGui")
-Solaris.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-Solaris.ResetOnSpawn = false
-Solaris.DisplayOrder = 99999
+Solaris.Parent = hiddenUI()
+SplitHub = Solaris
+elseif (not is_sirhurt_closure) and (syn and syn.protect_gui) then
+local Solaris = Instance.new("ScreenGui")
+syn.protect_gui(Solaris)
+Solaris.Parent = game:GetService("CoreGui")
+SplitHub = Solaris
+elseif game:GetService("CoreGui"):FindFirstChild('RobloxGui') then
+else
+game.Players.LocalPlayer:Kick("Trash Exploit")
+end
+
+SplitHub.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+SplitHub.ResetOnSpawn = false
+SplitHub.DisplayOrder = 99999
 
 
+
+SplitHubNoti = nil
+if get_hidden_gui or gethui then
+local hiddenUI = get_hidden_gui or gethui
 local NotificationHolder = Instance.new("ScreenGui")
-NotificationHolder.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-NotificationHolder.ResetOnSpawn = false
-NotificationHolder.DisplayOrder = 9999
+NotificationHolder.Parent = hiddenUI()
+SplitHubNoti = NotificationHolder
+elseif (not is_sirhurt_closure) and (syn and syn.protect_gui) then
+local NotificationHolder = Instance.new("ScreenGui")
+syn.protect_gui(NotificationHolder)
+NotificationHolder.Parent = game:GetService("CoreGui")
+SplitHubNoti = NotificationHolder
+elseif game:GetService("CoreGui"):FindFirstChild('RobloxGui') then
+else
+game.Players.LocalPlayer:Kick("Trash Exploit")
+end
 
-NotificationHolder.Name = "NotificationHolder"
+
+SplitHubNoti.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+SplitHubNoti.ResetOnSpawn = false
+SplitHubNoti.DisplayOrder = 9999
+
+SplitHubNoti.Name = "NotificationHolder"
 
 
 local UserInputService = game:GetService("UserInputService")
@@ -34,7 +69,7 @@ end
 
 local NotificationFrame = game:GetObjects("rbxassetid://6924028278")[1]
 NotificationFrame.ZIndex = 4
-NotificationFrame.Parent = NotificationHolder
+NotificationFrame.Parent = SplitHubNoti
 script = NotificationFrame.NotifScript
 local Notify = loadstring(NotificationFrame.NotifScript.Source)()
 script = oldScript
@@ -248,7 +283,7 @@ function SolarisLib:New(Config)
     local SectionPreset = game:GetObjects("rbxassetid://7121846230")[1]
     local ContainerPreset = game:GetObjects("rbxassetid://7121886326")[1]
     local MFrame = MainUI.MainFrame
-    MainUI.Parent = Solaris
+    MainUI.Parent = SplitHub
     MFrame.TopBar.TopFrameTitle.Text = Config.Name
     MakeDraggable(MFrame.TopBar, MainUI) 
     local oldScript = script
@@ -273,7 +308,7 @@ function SolarisLib:New(Config)
         local playing = false
         local MarketplaceService = game:GetService("MarketplaceService")
         local MusicFrame, MusicPreset = game:GetObjects("rbxassetid://7296373622")[1], game:GetObjects("rbxassetid://7296615234")[1]
-        MusicFrame.Parent = Solaris
+        MusicFrame.Parent = SplitHub
         MusicFrame.ZIndex = 5
         MusicFrame.Visible = SolarisLib.Settings.ShowMusicOnLaunch
         MusicFrame.Frame.Title.Text = "Not Playing"
@@ -1296,28 +1331,5 @@ function SolarisLib:New(Config)
     end 
     return TabHolder
 end    
-
-
-if get_hidden_gui or gethui then
-local hiddenUI = get_hidden_gui or gethui
-Solaris.Parent = hiddenUI()
-elseif (not is_sirhurt_closure) and (syn and syn.protect_gui) then
-syn.protect_gui(Solaris)
-Solaris.Parent = game:GetService("CoreGui")
-elseif game:GetService("CoreGui"):FindFirstChild('RobloxGui') then
-else
-game.Players.LocalPlayer:Kick("Trash Exploit")
-end
-
-if get_hidden_gui or gethui then
-local hiddenUI = get_hidden_gui or gethui
-NotificationHolder.Parent = hiddenUI()
-elseif (not is_sirhurt_closure) and (syn and syn.protect_gui) then
-syn.protect_gui(NotificationHolder)
-NotificationHolder.Parent = game:GetService("CoreGui")
-elseif game:GetService("CoreGui"):FindFirstChild('RobloxGui') then
-else
-game.Players.LocalPlayer:Kick("Trash Exploit")
-end
 
 return SolarisLib
