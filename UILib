@@ -88,8 +88,7 @@ local function CheckKey(tab, key)
 end
 
 
-
-local NotificationFrame = game:GetObjects("rbxassetid://6924028278")[1]
+local NotificationFrame = game:GetObjects("rbxassetid://13515783078")[1] 
 NotificationFrame.ZIndex = 4
 NotificationFrame.Parent = SplitHubNoti
 script = NotificationFrame.NotifScript
