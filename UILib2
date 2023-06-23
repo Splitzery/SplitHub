@@ -142,6 +142,17 @@ function library:CreateWindow(name, version, icon)
 		until Window.Size == UDim2.new(0, 0, 0, 0)
 		MyGui:Remove()
 	end)
+local UIS = game:GetService("UserInputService")
+
+	UIS.InputBegan:Connect(function(Input, IsTyping)
+	if IsTyping then return end
+	if Input.KeyCode == Enum.KeyCode.LeftControl then
+	  if game.CoreGui:FindFirstChild("SplitHub").Enabled == true then 
+      game.CoreGui:FindFirstChild("SplitHub").Enabled = false else
+      game.CoreGui:FindFirstChild("SplitHub").Enabled = true
+      end
+	end
+end)
 
 	Minimize.MouseButton1Click:Connect(function()
 		if not MinimizeGui then
